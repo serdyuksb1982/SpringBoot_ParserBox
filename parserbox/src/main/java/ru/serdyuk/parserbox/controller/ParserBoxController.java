@@ -1,9 +1,7 @@
 package ru.serdyuk.parserbox.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.serdyuk.parserbox.api.request.ParserRequest;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -24,6 +22,8 @@ public class ParserBoxController {
         return hash;
     }
 
-    /*@PostMapping("/")
-    public String add()*/
+    @PostMapping("/")
+    public String add(@RequestBody ParserRequest request) {
+        return request.getData();
+    }
 }
