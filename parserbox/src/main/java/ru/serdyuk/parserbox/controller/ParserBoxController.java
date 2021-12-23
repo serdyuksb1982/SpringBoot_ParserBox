@@ -1,7 +1,7 @@
 package ru.serdyuk.parserbox.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.serdyuk.parserbox.api.request.ParserRequest;
+import ru.serdyuk.parserbox.api.request.ParserBoxRequest;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class ParserBoxController {
     }
 
     @PostMapping("/")
-    public String add(@RequestBody ParserRequest request) {
+    public String add(@RequestBody ParserBoxRequest request) {
         return request.getData();
     }
 }

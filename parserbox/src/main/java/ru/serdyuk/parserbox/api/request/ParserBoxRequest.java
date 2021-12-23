@@ -3,7 +3,7 @@ package ru.serdyuk.parserbox.api.request;
 import lombok.Data;
 
 @Data
-public class ParserRequest {
+public class ParserBoxRequest {
 
     private String data;
 
