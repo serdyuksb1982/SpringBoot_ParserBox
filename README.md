@@ -13,3 +13,8 @@
    http://my-awesome-bin.tId/{hash}.
    Например: http://my-text.tId/ad12cd13
    Ограничение на последние 10 загруженныых паст (код/текст).
+   
+   FROM openjdk:14-jdk-alpine
+   MAINTAINER Serdyuk Sergey Borisovich
+   COPY target/parserbox-0.0.1-SNAPSHOT.jar parserbox.jar
+   ENTRYPOINT["java","-jar","/parserbox.jar"]
