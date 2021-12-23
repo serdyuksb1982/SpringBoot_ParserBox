@@ -1,13 +1,14 @@
 package ru.serdyuk.parserbox.api.response;
 
 import lombok.Data;
-import ru.serdyuk.parserbox.api.request.PublicStatus;
+import lombok.RequiredArgsConstructor;
+
 
 @Data
+@RequiredArgsConstructor
 public class ParserResponse {
-    private String data;
+    private final String data;
 
-    private PublicStatus status;
-
+    private final boolean isPublic;
 
 }

@@ -1,9 +1,11 @@
 package ru.serdyuk.parserbox.api.response;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class ParserUrlResponse {
-    private String url;
+    private final String url;
 
 }

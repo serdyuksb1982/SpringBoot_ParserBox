@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ParserBoxService {
     ParserResponse getByHash(String hash);
-    List<ParserResponse> getFirstPublicParser(int amount);
+    List<ParserResponse> getFirstPublicParser();
     ParserUrlResponse create(ParserBoxRequest request);
 }

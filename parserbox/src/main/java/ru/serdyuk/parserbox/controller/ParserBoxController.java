@@ -1,29 +1,34 @@
 package ru.serdyuk.parserbox.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.serdyuk.parserbox.api.request.ParserBoxRequest;
-
+import ru.serdyuk.parserbox.api.response.ParserResponse;
+import ru.serdyuk.parserbox.api.response.ParserUrlResponse;
+import ru.serdyuk.parserbox.service.ParserBoxService;
 import java.util.Collection;
-import java.util.Collections;
+
 
 /**
  * Simple controller
  */
 @RestController
+@RequiredArgsConstructor
 public class ParserBoxController {
+    private final ParserBoxService parserBoxService;
 
     @GetMapping("/")
-    public Collection<String> getPublicParserList() {
-        return Collections.emptyList();
+    public Collection<ParserResponse> getPublicParserList() {
+        return parserBoxService.getFirstPublicParser();
     }
 
     @GetMapping("/{hash}")
-    public String getByHash(@PathVariable String hash) {
-        return hash;
+    public ParserResponse getByHash(@PathVariable String hash) {
+        return parserBoxService.getByHash(hash);
     }
 
     @PostMapping("/")
-    public String add(@RequestBody ParserBoxRequest request) {
-        return request.getData();
+    public ParserUrlResponse add(@RequestBody ParserBoxRequest request) {
+        return parserBoxService.create(request);
     }
 }
