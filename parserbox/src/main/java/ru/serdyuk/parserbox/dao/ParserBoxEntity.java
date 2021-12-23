@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ParserBoxEntity {
+    private int id;
 
     private String data;
 

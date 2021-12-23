@@ -1,20 +1,50 @@
 package ru.serdyuk.parserbox.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
+import ru.serdyuk.parserbox.exception.NotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+
+/**
+ * получает список, ищет и возвращает
+ */
+@Repository
 public class PasteBoxRepositoryMap implements ParserBoxRepository{
+
+    private final Map<String,ParserBoxEntity> values = new ConcurrentHashMap<>();
+
     @Override
     public ParserBoxEntity getByHash(String hash) {
-        return null;
+        ParserBoxEntity parserBoxEntity = values.get(hash);
+        if(parserBoxEntity == null) {
+            throw new NotFoundException("Pastebox not found wish hash=" + hash);
+        }
+        return parserBoxEntity;
     }
 
     @Override
     public List<ParserBoxEntity> getListOfPublicAndAlive(int amount) {
-        return null;
+        LocalDateTime now = LocalDateTime.now();
+
+        return values.values().stream()
+                .filter(ParserBoxEntity::isPublic)
+                .filter(parserBoxEntity -> parserBoxEntity.getLifetime().isAfter(now))
+                .sorted(Comparator.comparing(ParserBoxEntity::getId).reversed())
+                .limit(amount)
+                .collect(Collectors.toList());
+
     }
 
     @Override
-    public ParserBoxEntity add(ParserBoxEntity parserBoxEntity) {
-        return null;
+    public void add(ParserBoxEntity parserBoxEntity) {
+
+        values.put(parserBoxEntity.getHash(),parserBoxEntity);
     }
 }

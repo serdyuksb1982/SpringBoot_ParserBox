@@ -8,5 +8,5 @@ public interface ParserBoxRepository {
 
     List<ParserBoxEntity> getListOfPublicAndAlive(int amount);
 
-    ParserBoxEntity add(ParserBoxEntity parserBoxEntity);
+    void add(ParserBoxEntity parserBoxEntity);
 }
