@@ -21,18 +21,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @ConfigurationProperties(prefix = "app")
 @Setter
-public class ParserBoxServiceImpl implements ParserBoxService{
+public class ParserBoxServiceImpl implements ParserBoxService {
+
+    private String host = "http://parserbox.serdyuk.ru";
+    private int publicIntSize = 10;
+
     private final ParserBoxRepository repository;
-    private String host;
-    private int publicIntSize;
-
-
     private AtomicInteger idGenerator = new AtomicInteger(0);
 
     @Override
     public ParserResponse getByHash(String hash) {
         ParserBoxEntity parserBoxEntity = repository.getByHash(hash);
-
         return new ParserResponse(parserBoxEntity.getData(), parserBoxEntity.isPublic());
     }
 
