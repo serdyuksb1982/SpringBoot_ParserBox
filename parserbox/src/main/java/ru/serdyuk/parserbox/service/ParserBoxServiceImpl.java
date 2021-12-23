@@ -1,6 +1,7 @@
 package ru.serdyuk.parserbox.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import ru.serdyuk.parserbox.api.request.ParserBoxRequest;
@@ -19,10 +20,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @ConfigurationProperties(prefix = "app")
+@Setter
 public class ParserBoxServiceImpl implements ParserBoxService{
     private final ParserBoxRepository repository;
-    private String host = "http://abc.ru";
-    private int publicIntSize = 10;
+    private String host;
+    private int publicIntSize;
 
 
     private AtomicInteger idGenerator = new AtomicInteger(0);
