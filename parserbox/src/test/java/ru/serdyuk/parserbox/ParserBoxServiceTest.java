@@ -12,6 +12,7 @@ import ru.serdyuk.parserbox.service.ParserBoxService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -22,11 +23,18 @@ public class ParserBoxServiceTest {
     @MockBean
     private ParserBoxRepository parserBoxRepository;
 
+    /**
+     * тест на бросание исключения
+     */
     @Test
     public void notExistHash() {
+        when(parserBoxRepository.getByHash(anyString())).thenThrow(NotFoundException.class);
         assertThrows(NotFoundException.class, () -> parserBoxService.getByHash("dsfldfsdf"));
     }
 
+    /**
+     * тест на то, что Service получает данные из репозитория и в нужном формате возвращает
+     */
     @Test
     public void getExistsHash() {
         ParserBoxEntity entity = new ParserBoxEntity();
