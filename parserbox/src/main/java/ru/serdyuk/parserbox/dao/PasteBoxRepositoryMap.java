@@ -2,11 +2,8 @@ package ru.serdyuk.parserbox.dao;
 
 import org.springframework.stereotype.Repository;
 import ru.serdyuk.parserbox.exception.NotFoundException;
-
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +21,7 @@ public class PasteBoxRepositoryMap implements ParserBoxRepository{
     public ParserBoxEntity getByHash(String hash) {
         ParserBoxEntity parserBoxEntity = values.get(hash);
         if(parserBoxEntity == null) {
-            throw new NotFoundException("Pastebox not found wish hash=" + hash);
+            throw new NotFoundException("ParserBox not found wish hash=" + hash);
         }
         return parserBoxEntity;
     }

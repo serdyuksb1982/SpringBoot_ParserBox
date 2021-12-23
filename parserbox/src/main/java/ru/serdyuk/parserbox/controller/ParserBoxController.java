@@ -1,6 +1,7 @@
 package ru.serdyuk.parserbox.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.web.bind.annotation.*;
 import ru.serdyuk.parserbox.api.request.ParserBoxRequest;
 import ru.serdyuk.parserbox.api.response.ParserResponse;
@@ -14,6 +15,7 @@ import java.util.Collection;
  */
 @RestController
 @RequiredArgsConstructor
+@Setter
 public class ParserBoxController {
     private final ParserBoxService parserBoxService;
 
