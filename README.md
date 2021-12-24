@@ -14,6 +14,8 @@
    Например: http://my-text.tId/ad12cd13
    Ограничение на последние 10 загруженныых паст (код/текст).
    
+   Docker ->
+   
    FROM openjdk:14-jdk-alpine
    
    MAINTAINER Serdyuk Sergey Borisovich
